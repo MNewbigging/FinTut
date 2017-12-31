@@ -76,6 +76,7 @@ namespace Lingo
         // Read given table contents, return data in dt
         public DataTable ReadTable(string table)
         {
+            // To be filled with data, mapped to data grid
             DataTable dt = new DataTable();
             try
             {

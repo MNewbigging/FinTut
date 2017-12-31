@@ -101,10 +101,7 @@ namespace Lingo
             // Send row id to data handler to remove from master table
             dataHandler.RemoveRow("MASTER", id);
         }
-
- 
-     
-        
+          
         // START TEST - fetches & preps test data, displays in new window
         private void btnGenTest_Click(object sender, RoutedEventArgs e)
         {
@@ -117,12 +114,19 @@ namespace Lingo
             Test test = new Test(dt, size);     
         }
 
+
+        // 
+        private void btnAddNewTopic_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
         // Searches databse for all tables/topics, displays in combo/list boxes throughout app
         private void LoadTopics()
         {
             // Clear current boxes first
             cmboBxTopics.Items.Clear();
-            cmbxTopics.Items.Clear();
             lstBxAllTopics.Items.Clear();
 
             // Retrieve list of table names currently in db
@@ -132,10 +136,10 @@ namespace Lingo
             foreach (string table in names)
             {
                 cmboBxTopics.Items.Add(table);
-                cmbxTopics.Items.Add(table);
                 lstBxAllTopics.Items.Add(table);
             }
 
         }
+
     }
 }
