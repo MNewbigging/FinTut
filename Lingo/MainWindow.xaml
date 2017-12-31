@@ -11,16 +11,28 @@
             <TabItem Header="Add Vocab">
                 <Grid Background="#FFE5E5E5">
                     <TabControl x:Name="tabControlInner" HorizontalAlignment="Left" Height="433" VerticalAlignment="Top" Width="513" Margin="0,0,-0.333,0">
+                        <TabItem Header="Topics">
+                            <Grid Background="#FFE5E5E5">
+                                <Label x:Name="lblAllTopics" Content="All Topics:" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top"/>
+                                <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="100" Margin="19,41,0,0" VerticalAlignment="Top" Width="200"/>
+                                <Label x:Name="lblNewTopic" Content="New Topic: " HorizontalAlignment="Left" Margin="35,193,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="txtBxNewTopic" HorizontalAlignment="Left" Height="23" Margin="111,197,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                <Button x:Name="btnAddNewTopic" Content="Add" HorizontalAlignment="Left" Margin="260,197,0,0" VerticalAlignment="Top" Width="80" Height="23"/>
+
+                            </Grid>
+                        </TabItem>
                         <TabItem Header="General">
                             <Grid Background="#FFE5E5E5">
-                                <DataGrid x:Name="dataGridVocabGeneral" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="150" Width="487"/>
+                                <DataGrid x:Name="dataGridVocabGeneral" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Height="150" Width="487"/>
                                 <TextBox x:Name="txtBxVGEng" HorizontalAlignment="Left" Height="23" Margin="43,331,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                                 <TextBox x:Name="txtBxVGFin" HorizontalAlignment="Left" Height="23" Margin="216,327,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                                 <Button x:Name="btnVGAdd" Content="Add" HorizontalAlignment="Left" Margin="369,327,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="btnVGAdd_Click"/>
                                 <Label x:Name="lblEng" Content="Eng" HorizontalAlignment="Left" Margin="10,331,0,0" VerticalAlignment="Top"/>
                                 <Label x:Name="lblFin" Content="Fin" HorizontalAlignment="Left" Margin="188,327,0,0" VerticalAlignment="Top"/>
-                                <Button x:Name="btnGeneralRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="200,176,0,0" VerticalAlignment="Top" Width="78" Height="21" Click="btnRefresh_Click"/>
-                                <Button x:Name="btnDelGeneral" Content="Delete" HorizontalAlignment="Left" Margin="329,176,0,0" VerticalAlignment="Top" Width="70" Height="21" Click="btnDelGeneral_Click"/>
+                                <Button x:Name="btnGeneralRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="188,242,0,0" VerticalAlignment="Top" Width="78" Height="21" Click="btnRefresh_Click"/>
+                                <Button x:Name="btnDelGeneral" Content="Delete" HorizontalAlignment="Left" Margin="299,242,0,0" VerticalAlignment="Top" Width="70" Height="21" Click="btnDelGeneral_Click"/>
+                                <Label x:Name="lblTopic" Content="Topic: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                                <ComboBox x:Name="cmbxTopics" HorizontalAlignment="Left" Margin="58,10,0,0" VerticalAlignment="Top" Width="120" DropDownOpened="cmbxTopics_DropDownOpened"/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Verbs">
@@ -53,14 +65,11 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Revision">
-                
+
             </TabItem>
             <TabItem Header="Tests">
                 <Grid Background="#FFE5E5E5">
                     <TabControl x:Name="tabCtrlTestsInner" HorizontalAlignment="Left" Height="442" VerticalAlignment="Top" Width="513" Margin="0,0,-0.2,0">
-                        <TabItem Header="Topics">
-                            <Grid Background="#FFE5E5E5"/>
-                        </TabItem>
                         <TabItem Header="Generate Test">
                             <Grid Background="#FFE5E5E5">
                                 <ComboBox x:Name="cmboBxTopics" HorizontalAlignment="Left" Margin="63,41,0,0" VerticalAlignment="Top" Width="120" DropDownOpened="cmboBxTopics_DropDownOpened"/>

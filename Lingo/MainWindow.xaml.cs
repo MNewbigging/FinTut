@@ -24,15 +24,16 @@ namespace Lingo
     /// - Statistics section; user profile, test history
     /// - Grammar section; rules page? 
     /// If vocab is added to another table, should be added to master as well
+    /// Check just added vocab; only add if it doesn't exist in table (use threads to do this in case the master table is massive)
     /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-          
-            // Populate data grids in Vocab tab on load
-            
+
+            // Populate data grids on load
+            dataGridVocabGeneral.ItemsSource = dataHandler.ReadTable("MASTER").DefaultView;
         }
 
         // Initialise data handler obj
@@ -115,21 +116,32 @@ namespace Lingo
             }
             
         }
-
+        private void cmbxTopics_DropDownOpened(object sender, EventArgs e)
+        {
+            // Clear any items already in list
+            cmbxTopics.Items.Clear();
+            // Retrieve list of table names currently in db
+            List<string> names = dataHandler.GetTables();
+            // Add each name found to combo box
+            // TODO - prevent master tables from being shown here? 
+            foreach (string table in names)
+            {
+                cmbxTopics.Items.Add(table);
+            }
+        }
+       
+        
         // START TEST - fetches & preps test data, displays in new window
         private void btnGenTest_Click(object sender, RoutedEventArgs e)
         {
             // Get all contents of chosen table
+            // TODO - check that a topic is selected
             DataTable dt = dataHandler.ReadTable(cmboBxTopics.SelectedItem.ToString());           
             // Convert given size to int
             int size = Convert.ToInt32(txtBxSize.Text);
             // Pass these to test obj to handle test prep/execution
             Test test = new Test(dt, size);     
         }
-
-
-
-
 
 
     }
