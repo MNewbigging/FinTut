@@ -32,8 +32,8 @@ namespace Lingo
         {
             InitializeComponent();
 
-            // Populate data grids on load
-            dataGridVocabGeneral.ItemsSource = dataHandler.ReadTable("MASTER").DefaultView;
+            // Load all currently existing topics in all display boxes
+            LoadTopics();
         }
 
         // Initialise data handler obj
@@ -102,34 +102,8 @@ namespace Lingo
             dataHandler.RemoveRow("MASTER", id);
         }
 
-        // DROP DOWN combo box click, populate with table names
-        private void cmboBxTopics_DropDownOpened(object sender, EventArgs e)
-        {
-            // Clear any items already in list
-            cmboBxTopics.Items.Clear();
-            // Retrieve list of table names currently in db
-            List<string> names = dataHandler.GetTables();
-            // Add each name found to combo box
-            foreach(string table in names)
-            {
-                cmboBxTopics.Items.Add(table);
-            }
-            
-        }
-        private void cmbxTopics_DropDownOpened(object sender, EventArgs e)
-        {
-            // Clear any items already in list
-            cmbxTopics.Items.Clear();
-            // Retrieve list of table names currently in db
-            List<string> names = dataHandler.GetTables();
-            // Add each name found to combo box
-            // TODO - prevent master tables from being shown here? 
-            foreach (string table in names)
-            {
-                cmbxTopics.Items.Add(table);
-            }
-        }
-       
+ 
+     
         
         // START TEST - fetches & preps test data, displays in new window
         private void btnGenTest_Click(object sender, RoutedEventArgs e)
@@ -143,6 +117,25 @@ namespace Lingo
             Test test = new Test(dt, size);     
         }
 
+        // Searches databse for all tables/topics, displays in combo/list boxes throughout app
+        private void LoadTopics()
+        {
+            // Clear current boxes first
+            cmboBxTopics.Items.Clear();
+            cmbxTopics.Items.Clear();
+            lstBxAllTopics.Items.Clear();
 
+            // Retrieve list of table names currently in db
+            List<string> names = dataHandler.GetTables();
+
+            // Add each name found to all display boxes
+            foreach (string table in names)
+            {
+                cmboBxTopics.Items.Add(table);
+                cmbxTopics.Items.Add(table);
+                lstBxAllTopics.Items.Add(table);
+            }
+
+        }
     }
 }
