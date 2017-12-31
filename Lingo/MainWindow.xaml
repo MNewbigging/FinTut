@@ -1,0 +1,79 @@
+﻿<Window x:Class="Lingo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lingo"
+        mc:Ignorable="d"
+        Title="Lingo" Height="500" Width="525">
+    <Grid>
+        <TabControl x:Name="tabControlOuter" HorizontalAlignment="Left" Height="471" VerticalAlignment="Top" Width="519" Margin="0,0,-0.333,-0.333">
+            <TabItem Header="Add Vocab">
+                <Grid Background="#FFE5E5E5">
+                    <TabControl x:Name="tabControlInner" HorizontalAlignment="Left" Height="433" VerticalAlignment="Top" Width="513" Margin="0,0,-0.333,0">
+                        <TabItem Header="General">
+                            <Grid Background="#FFE5E5E5">
+                                <DataGrid x:Name="dataGridVocabGeneral" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="150" Width="487"/>
+                                <TextBox x:Name="txtBxVGEng" HorizontalAlignment="Left" Height="23" Margin="43,331,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                <TextBox x:Name="txtBxVGFin" HorizontalAlignment="Left" Height="23" Margin="216,327,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                <Button x:Name="btnVGAdd" Content="Add" HorizontalAlignment="Left" Margin="369,327,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="btnVGAdd_Click"/>
+                                <Label x:Name="lblEng" Content="Eng" HorizontalAlignment="Left" Margin="10,331,0,0" VerticalAlignment="Top"/>
+                                <Label x:Name="lblFin" Content="Fin" HorizontalAlignment="Left" Margin="188,327,0,0" VerticalAlignment="Top"/>
+                                <Button x:Name="btnGeneralRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="200,176,0,0" VerticalAlignment="Top" Width="78" Height="21" Click="btnRefresh_Click"/>
+                                <Button x:Name="btnDelGeneral" Content="Delete" HorizontalAlignment="Left" Margin="329,176,0,0" VerticalAlignment="Top" Width="70" Height="21" Click="btnDelGeneral_Click"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Verbs">
+                            <Grid Background="#FFE5E5E5">
+                                <DataGrid x:Name="dataGridVocabVerbs" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="150" Width="487"/>
+                                <Button x:Name="btnVerbRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="200,177,0,0" VerticalAlignment="Top" Width="75" Click="btnVerbRefresh_Click"/>
+                                <Label x:Name="lblVEng" Content="Eng" HorizontalAlignment="Left" Margin="11,211,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="txtBxVEng" HorizontalAlignment="Left" Height="23" Margin="52,214,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                <Label x:Name="lblVFin" Content="Fin" HorizontalAlignment="Left" Margin="227,214,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="txtBxVFin" HorizontalAlignment="Left" Height="23" Margin="262,217,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                <Label x:Name="lblI" Content="Minä" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="txtBxI" HorizontalAlignment="Left" Height="23" Margin="52,253,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                <Label x:Name="lblYou" Content="Sinä" HorizontalAlignment="Left" Margin="10,290,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="txtBxYou" HorizontalAlignment="Left" Height="23" Margin="52,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                <Label x:Name="lblHeShe" Content="Hän" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="txtBxHeShe" HorizontalAlignment="Left" Height="23" Margin="52,333,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                <Label x:Name="lblIt" Content="Se" HorizontalAlignment="Left" Margin="10,370,0,-7.667" VerticalAlignment="Top"/>
+                                <TextBox x:Name="txtBxIt" HorizontalAlignment="Left" Height="23" Margin="52,373,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                <Label x:Name="lblWe" Content="Me" HorizontalAlignment="Left" Margin="227,250,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="txtBxWe" HorizontalAlignment="Left" Height="23" Margin="262,253,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                <Label x:Name="lblYouPl" Content="Te" HorizontalAlignment="Left" Margin="231,290,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="txtBxYouPl" HorizontalAlignment="Left" Height="23" Margin="262,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                <Label x:Name="lblThey" Content="He" HorizontalAlignment="Left" Margin="228,330,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="txtBxThey" HorizontalAlignment="Left" Height="23" Margin="262,333,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                <Button x:Name="btnVerbAdd" Content="Add" HorizontalAlignment="Left" Margin="305,373,0,0" VerticalAlignment="Top" Width="77" Height="23" Click="btnVerbAdd_Click"/>
+                                <Button x:Name="btnDel" Content="Delete" HorizontalAlignment="Left" Margin="381,177,0,0" VerticalAlignment="Top" Width="75" Click="btnDel_Click"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Revision">
+                
+            </TabItem>
+            <TabItem Header="Tests">
+                <Grid Background="#FFE5E5E5">
+                    <TabControl x:Name="tabCtrlTestsInner" HorizontalAlignment="Left" Height="442" VerticalAlignment="Top" Width="513" Margin="0,0,-0.2,0">
+                        <TabItem Header="Topics">
+                            <Grid Background="#FFE5E5E5"/>
+                        </TabItem>
+                        <TabItem Header="Generate Test">
+                            <Grid Background="#FFE5E5E5">
+                                <ComboBox x:Name="cmboBxTopics" HorizontalAlignment="Left" Margin="63,41,0,0" VerticalAlignment="Top" Width="120" DropDownOpened="cmboBxTopics_DropDownOpened"/>
+                                <Label x:Name="lblTopics" Content="Topic" HorizontalAlignment="Left" Margin="20,38,0,0" VerticalAlignment="Top"/>
+                                <Label x:Name="lblSize" Content="Size" HorizontalAlignment="Left" Margin="20,89,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="txtBxSize" HorizontalAlignment="Left" Height="23" Margin="63,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50"/>
+                                <Button x:Name="btnGenTest" Content="Start Test" HorizontalAlignment="Left" Margin="63,132,0,0" VerticalAlignment="Top" Width="75" Click="btnGenTest_Click"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
