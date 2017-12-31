@@ -24,7 +24,6 @@ C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\bin\Debug\lingo.mdf
 C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\bin\Debug\lingo_log.ldf
 C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\bin\Debug\Lingo.exe
 C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\bin\Debug\Lingo.pdb
-C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\obj\Debug\Lingo.csprojResolveAssemblyReference.cache
 C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\obj\Debug\MainWindow.g.cs
 C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\obj\Debug\TestWindow.g.cs
 C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\obj\Debug\App.g.cs
@@ -36,3 +35,5 @@ C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\obj\Debug\TestWindow.baml
 C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\obj\Debug\Lingo.g.resources
 C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\obj\Debug\Lingo.Properties.Resources.resources
 C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\obj\Debug\Lingo.csproj.GenerateResource.Cache
+C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\obj\Debug\Lingo.csproj.CoreCompileInputs.cache
+C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\obj\Debug\Lingo.csprojResolveAssemblyReference.cache

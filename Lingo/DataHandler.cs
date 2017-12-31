@@ -14,9 +14,8 @@ namespace Lingo
     class DataHandler
     {
         // Database connection string
-        private string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=c:\users\mrnew\documents\visual studio 2015\Projects\Lingo\Lingo\lingo.mdf;Integrated Security=True;Connect Timeout=30";
+        private string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\mrnew\Documents\GitHub\FinTut\Lingo\lingo.mdf;Integrated Security=True;Connect Timeout=30";
 
-        
 
         // Master table insert query
         private string masterInsertQ = "INSERT INTO MASTER (fin, eng) VALUES (@fin, @eng)";
@@ -83,7 +82,7 @@ namespace Lingo
                 using (SqlConnection con = new SqlConnection(conString))
                 {
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM "+ table +"", con);
+                    SqlCommand cmd = new SqlCommand("SELECT eng, fin, topic FROM "+ table +"", con);
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);                   
                     sda.Fill(dt);
                 }
