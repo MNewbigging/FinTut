@@ -22,6 +22,7 @@ namespace Lingo
         // Master verbs insert query
         public string masterVerbsInsertQ = "INSERT INTO MASTERVERBS (veng, vfin, i, you, heShe, it, we, youPl, they) VALUES (@veng, @vfin, @i, @you, @heShe, @it, @we, @youPl, @they)";
 
+
         // General dt view master table read query
         public string masterGeneralReadQ = "SELECT id, eng, fin, topic FROM ";
         // Test master table read query
@@ -32,7 +33,7 @@ namespace Lingo
         
 
         // Topics search query
-        public string topicsQuery = "";
+        public string topicsQuery = "SELECT DISTINCT";
        
 
             
@@ -102,8 +103,6 @@ namespace Lingo
             } catch (Exception e) { Console.WriteLine("Exception caught reading master: " + e.Message); }
             return dt;
         }
-
-
 
 
 

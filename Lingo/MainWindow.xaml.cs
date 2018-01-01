@@ -53,6 +53,7 @@ namespace Lingo
             // Clear textboxes
             txtBxVGEng.Text = "";
             txtBxVGFin.Text = "";
+            txtBxTopic.Text = "";
             // Auto focus on eng text box
             txtBxVEng.Focusable = true;
             Keyboard.Focus(txtBxVEng);
