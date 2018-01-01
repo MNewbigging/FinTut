@@ -18,15 +18,26 @@ namespace Lingo
 
 
         // Master table insert query
-        private string masterInsertQ = "INSERT INTO MASTER (fin, eng) VALUES (@fin, @eng)";
+        public string masterInsertQ = "INSERT INTO MASTER (fin, eng, topic) VALUES (@fin, @eng, @topic)";
         // Master verbs insert query
-        private string masterVerbsInsertQ = "INSERT INTO MASTERVERBS (veng, vfin, i, you, heShe, it, we, youPl, they) VALUES (@veng, @vfin, @i, @you, @heShe, @it, @we, @youPl, @they)";
+        public string masterVerbsInsertQ = "INSERT INTO MASTERVERBS (veng, vfin, i, you, heShe, it, we, youPl, they) VALUES (@veng, @vfin, @i, @you, @heShe, @it, @we, @youPl, @they)";
 
+        // General dt view master table read query
+        public string masterGeneralReadQ = "SELECT id, eng, fin, topic FROM ";
+        // Test master table read query
+        public string masterTestReadQ = "SELECT eng, fin FROM ";
+        // General dt view master verbs read query
+        public string masterGeneralVerbsReadQ = "SELECT * FROM ";
+
+        
+
+        // Topics search query
+        public string topicsQuery = "";
        
 
             
         // Add entry to master table
-        public void MasterStore(string fin, string eng)
+        public void MasterStore(string fin, string eng, string topic)
         {
             try
             {
@@ -37,6 +48,7 @@ namespace Lingo
                     cmd.Connection = con;
                     cmd.Parameters.AddWithValue("@fin", fin);
                     cmd.Parameters.AddWithValue("@eng", eng);
+                    cmd.Parameters.AddWithValue("@topic", topic);
                     con.Open();
                     cmd.ExecuteNonQuery();
                 }
@@ -73,7 +85,7 @@ namespace Lingo
 
 
         // Read given table contents, return data in dt
-        public DataTable ReadTable(string table)
+        public DataTable ReadTable(string table, string query)
         {
             // To be filled with data, mapped to data grid
             DataTable dt = new DataTable();
@@ -82,7 +94,7 @@ namespace Lingo
                 using (SqlConnection con = new SqlConnection(conString))
                 {
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT eng, fin, topic FROM "+ table +"", con);
+                    SqlCommand cmd = new SqlCommand(query + table + "", con);
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);                   
                     sda.Fill(dt);
                 }
@@ -90,6 +102,9 @@ namespace Lingo
             } catch (Exception e) { Console.WriteLine("Exception caught reading master: " + e.Message); }
             return dt;
         }
+
+
+
 
 
         // Remove row of given id in given table

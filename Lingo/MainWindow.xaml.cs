@@ -44,10 +44,12 @@ namespace Lingo
         // ADD single word vocab to master table
         private void btnVGAdd_Click(object sender, RoutedEventArgs e)
         {
+            // TODO - Check for non-whitespace in eng and fin text fields
+
             // Invoke data handler to store data taken from text boxes
-            dataHandler.MasterStore(txtBxVGFin.Text.ToLower(), txtBxVGEng.Text.ToLower());
+            dataHandler.MasterStore(txtBxVGFin.Text.ToLower(), txtBxVGEng.Text.ToLower(), txtBxTopic.Text.ToLower());
             // Refresh list
-            dataGridVocabGeneral.ItemsSource = dataHandler.ReadTable("MASTER").DefaultView;
+            dataGridVocabGeneral.ItemsSource = dataHandler.ReadTable("MASTER", dataHandler.masterGeneralReadQ).DefaultView;
             // Clear textboxes
             txtBxVGEng.Text = "";
             txtBxVGFin.Text = "";
@@ -59,13 +61,13 @@ namespace Lingo
         // REFRESH general data grid
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            dataGridVocabGeneral.ItemsSource = dataHandler.ReadTable("MASTER").DefaultView;
+            dataGridVocabGeneral.ItemsSource = dataHandler.ReadTable("MASTER", dataHandler.masterGeneralReadQ).DefaultView;
         }
 
         // REFRESH verbs data grid
         private void btnVerbRefresh_Click(object sender, RoutedEventArgs e)
         {
-            dataGridVocabVerbs.ItemsSource = dataHandler.ReadTable("MASTERVERBS").DefaultView;
+            dataGridVocabVerbs.ItemsSource = dataHandler.ReadTable("MASTERVERBS", dataHandler.masterGeneralVerbsReadQ).DefaultView;
         }
 
         // ADD verb to master verb table
@@ -73,7 +75,7 @@ namespace Lingo
         {
             dataHandler.MasterVerbStore(txtBxVEng.Text.ToLower(), txtBxVFin.Text.ToLower(), txtBxI.Text.ToLower(), txtBxYou.Text.ToLower(), txtBxHeShe.Text.ToLower(), txtBxIt.Text.ToLower(), txtBxWe.Text.ToLower(), txtBxYouPl.Text.ToLower(), txtBxThey.Text.ToLower());
             // Refresh list
-            dataGridVocabVerbs.ItemsSource = dataHandler.ReadTable("MASTERVERBS").DefaultView;
+            dataGridVocabVerbs.ItemsSource = dataHandler.ReadTable("MASTERVERBS", dataHandler.masterGeneralVerbsReadQ).DefaultView;
             // Clear textboxes
             txtBxVEng.Text = ""; txtBxVFin.Text = ""; txtBxI.Text = ""; txtBxYou.Text = "";
             txtBxHeShe.Text = ""; txtBxIt.Text = ""; txtBxWe.Text = ""; txtBxYouPl.Text = ""; txtBxThey.Text = "";
@@ -105,9 +107,11 @@ namespace Lingo
         // START TEST - fetches & preps test data, displays in new window
         private void btnGenTest_Click(object sender, RoutedEventArgs e)
         {
-            // Get all contents of chosen table
+
             // TODO - check that a topic is selected
-            DataTable dt = dataHandler.ReadTable(cmboBxTopics.SelectedItem.ToString());           
+
+            // Get all contents of chosen table
+            DataTable dt = dataHandler.ReadTable(cmboBxTopics.SelectedItem.ToString(), dataHandler.masterTestReadQ);           
             // Convert given size to int
             int size = Convert.ToInt32(txtBxSize.Text);
             // Pass these to test obj to handle test prep/execution

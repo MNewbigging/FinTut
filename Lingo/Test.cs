@@ -69,7 +69,7 @@ namespace Lingo
                 // Grab row at index
                 DataRow row = testTable.Rows[index-1];
                 finAnswers.Add(row[1].ToString());
-                engQuestions.Add(row[2].ToString());
+                engQuestions.Add(row[0].ToString());
             }
             // Debug
             debug.PrintList(engQuestions, "engQuestions");
