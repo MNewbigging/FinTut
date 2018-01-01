@@ -44,23 +44,22 @@ namespace Lingo
         // ADD single word vocab to master table
         private void btnVGAdd_Click(object sender, RoutedEventArgs e)
         {
-            // TODO - Check for non-whitespace in eng and fin text fields
+            // TODO - Only add word if text boxes don't have only whitespace, and topic is selected
+            if (cmboBxGeneralTopics.SelectedIndex > -1)
+            {
+                // Invoke data handler to store data taken from text boxes in master table
+                dataHandler.MasterStore(txtBxVGFin.Text.ToLower(), txtBxVGEng.Text.ToLower(), cmboBxGeneralTopics.Text.ToLower());
+                // Refresh list
+                dataGridVocabGeneral.ItemsSource = dataHandler.ReadTable("MASTER", dataHandler.masterGeneralReadQ).DefaultView;
+                // Clear textboxes
+                txtBxVGEng.Text = "";
+                txtBxVGFin.Text = "";
+                cmboBxGeneralTopics.SelectedIndex = -1;
+                // Auto focus on eng text box
+                txtBxVEng.Focusable = true;
+                Keyboard.Focus(txtBxVEng);
+            }
 
-            // Invoke data handler to store data taken from text boxes in master table
-            dataHandler.MasterStore(txtBxVGFin.Text.ToLower(), txtBxVGEng.Text.ToLower(), txtBxTopic.Text.ToLower());
-            
-            // Then store the topic in the topic table
-            dataHandler.TopicStore(txtBxTopic.Text.ToLower());
-            
-            // Refresh list
-            dataGridVocabGeneral.ItemsSource = dataHandler.ReadTable("MASTER", dataHandler.masterGeneralReadQ).DefaultView;
-            // Clear textboxes
-            txtBxVGEng.Text = "";
-            txtBxVGFin.Text = "";
-            txtBxTopic.Text = "";
-            // Auto focus on eng text box
-            txtBxVEng.Focusable = true;
-            Keyboard.Focus(txtBxVEng);
         }
 
         // REFRESH general data grid
@@ -116,7 +115,7 @@ namespace Lingo
             // TODO - check that a topic is selected
 
             // Get all contents of chosen table
-            DataTable dt = dataHandler.ReadTable(cmboBxTopics.SelectedItem.ToString(), dataHandler.masterTestReadQ);           
+            DataTable dt = dataHandler.ReadTable(cmboBxTestTopics.SelectedItem.ToString(), dataHandler.masterTestReadQ);           
             // Convert given size to int
             int size = Convert.ToInt32(txtBxSize.Text);
             // Pass these to test obj to handle test prep/execution
@@ -124,11 +123,31 @@ namespace Lingo
         }
 
 
-        // 
+        // ADD TOPIC - adds a new topic entry to the topics table
         private void btnAddNewTopic_Click(object sender, RoutedEventArgs e)
         {
-            // Check this topic doesn't already exist in the database
+            // Flag to determine whether topic is unique and can be added to db
+            bool addTopic = true;
 
+            // Check this topic doesn't already exist in the database
+            foreach (string topic in lstBxAllTopics.Items)
+            {
+                if (topic == txtBxNewTopic.Text.ToLower())
+                {
+                    addTopic = false;
+                }
+            }
+
+            // If the above check succeeds
+            if (addTopic)
+            {
+                // Then store the topic in the topic table
+                dataHandler.TopicStore(txtBxNewTopic.Text.ToLower());
+                // Clear new topic text field 
+                txtBxNewTopic.Text = "";
+                // Refresh topics listings
+                LoadTopics();
+            }
         }
 
 
@@ -136,8 +155,9 @@ namespace Lingo
         private void LoadTopics()
         {
             // Clear current boxes first
-            cmboBxTopics.Items.Clear();
+            cmboBxTestTopics.Items.Clear();
             lstBxAllTopics.Items.Clear();
+            cmboBxGeneralTopics.Items.Clear();
 
             // Retrieve list of all topics
             List<string> names = dataHandler.ReadTopics();
@@ -145,8 +165,9 @@ namespace Lingo
             // Add each name found to all display boxes
             foreach (string table in names)
             {
-                cmboBxTopics.Items.Add(table);
+                cmboBxTestTopics.Items.Add(table);
                 lstBxAllTopics.Items.Add(table);
+                cmboBxGeneralTopics.Items.Add(table);
             }
 
         }

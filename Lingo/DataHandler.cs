@@ -121,6 +121,7 @@ namespace Lingo
             return dt;
         }
 
+
         // Read all topics, return data as list of strings 
         public List<string> ReadTopics()
         {
@@ -146,6 +147,7 @@ namespace Lingo
             
             return topics;
         }
+
 
         // Remove row of given id in given table
         public void RemoveRow(string table, int id)
