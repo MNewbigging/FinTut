@@ -46,8 +46,12 @@ namespace Lingo
         {
             // TODO - Check for non-whitespace in eng and fin text fields
 
-            // Invoke data handler to store data taken from text boxes
+            // Invoke data handler to store data taken from text boxes in master table
             dataHandler.MasterStore(txtBxVGFin.Text.ToLower(), txtBxVGEng.Text.ToLower(), txtBxTopic.Text.ToLower());
+            
+            // Then store the topic in the topic table
+            dataHandler.TopicStore(txtBxTopic.Text.ToLower());
+            
             // Refresh list
             dataGridVocabGeneral.ItemsSource = dataHandler.ReadTable("MASTER", dataHandler.masterGeneralReadQ).DefaultView;
             // Clear textboxes
@@ -123,6 +127,7 @@ namespace Lingo
         // 
         private void btnAddNewTopic_Click(object sender, RoutedEventArgs e)
         {
+            // Check this topic doesn't already exist in the database
 
         }
 
@@ -134,9 +139,9 @@ namespace Lingo
             cmboBxTopics.Items.Clear();
             lstBxAllTopics.Items.Clear();
 
-            // Retrieve list of table names currently in db
-            List<string> names = dataHandler.GetTables();
-
+            // Retrieve list of all topics
+            List<string> names = dataHandler.ReadTopics();
+            
             // Add each name found to all display boxes
             foreach (string table in names)
             {

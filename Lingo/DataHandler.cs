@@ -21,7 +21,8 @@ namespace Lingo
         public string masterInsertQ = "INSERT INTO MASTER (fin, eng, topic) VALUES (@fin, @eng, @topic)";
         // Master verbs insert query
         public string masterVerbsInsertQ = "INSERT INTO MASTERVERBS (veng, vfin, i, you, heShe, it, we, youPl, they) VALUES (@veng, @vfin, @i, @you, @heShe, @it, @we, @youPl, @they)";
-
+        // Topic insert query
+        public string topicInsertQ = "INSERT INTO Topics (topic) VALUES (@topic)";
 
         // General dt view master table read query
         public string masterGeneralReadQ = "SELECT id, eng, fin, topic FROM ";
@@ -29,12 +30,9 @@ namespace Lingo
         public string masterTestReadQ = "SELECT eng, fin FROM ";
         // General dt view master verbs read query
         public string masterGeneralVerbsReadQ = "SELECT * FROM ";
-
-        
-
         // Topics search query
-        public string topicsQuery = "SELECT DISTINCT";
-       
+        public string topicReadQ = "SELECT * FROM Topics";
+        
 
             
         // Add entry to master table
@@ -85,6 +83,25 @@ namespace Lingo
         }
 
 
+        // Add entry to topic table
+        public void TopicStore(string topic)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    SqlCommand cmd = new SqlCommand(topicInsertQ);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    cmd.Parameters.AddWithValue("@topic", topic);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                Console.WriteLine("Topics table successfully updated.");
+            } catch (Exception e) { Console.WriteLine("Exception caught inserting into topic table: " + e.Message); }
+        }
+
+
         // Read given table contents, return data in dt
         public DataTable ReadTable(string table, string query)
         {
@@ -104,7 +121,31 @@ namespace Lingo
             return dt;
         }
 
-
+        // Read all topics, return data as list of strings 
+        public List<string> ReadTopics()
+        {
+            // Resulting list of topic names
+            List<string> topics = new List<string>();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(topicReadQ, con);
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        // Add value at 0 to list (only 1 column in this table)
+                        topics.Add(row[0].ToString());
+                    }
+                    Console.WriteLine("Successfully found all topic names in db");
+                }
+            } catch (Exception e) { Console.WriteLine("Exception caught reading topics: " + e.Message); }
+            
+            return topics;
+        }
 
         // Remove row of given id in given table
         public void RemoveRow(string table, int id)
