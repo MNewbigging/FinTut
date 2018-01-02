@@ -27,13 +27,17 @@ namespace Lingo
         public List<string> userAnswers = new List<string>();
         // Number of questions as determined by user
         public int questions;
+        // Topic of this test
+        public string topic;
+
 
         // Constructor preps test data
-        public Test(DataTable dt, int size)
+        public Test(DataTable dt, int size, string topicName)
         {
             // Copy over data
             testTable = dt;
             questions = size;
+            topic = topicName;
 
             // Prepare test data
             PrepareTestData();

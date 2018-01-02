@@ -119,7 +119,7 @@ namespace Lingo
             // Convert given size to int
             int size = Convert.ToInt32(txtBxSize.Text);
             // Pass these to test obj to handle test prep/execution
-            Test test = new Test(dt, size);     
+            Test test = new Test(dt, size, cmboBxTestTopics.Text);     
         }
 
 

@@ -28,7 +28,9 @@ namespace Lingo
             InitializeComponent();
             // Assign instance of test 
             test = testInstance;
-           
+            // Assign test window title
+            this.Title = test.topic + " Test";
+
             // Generate test controls
             for(int i = 0; i < test.questions + 1; i++)
             {
