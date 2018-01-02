@@ -121,6 +121,25 @@ namespace Lingo
             return dt;
         }
 
+        // Read given table contents, return dt of only chosen topic
+        public DataTable TestReadTable(string table, string topic)
+        {
+            // To be filled with data, mapped to data grid
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT eng, fin FROM " + table + " WHERE topic = '"+ topic +"'", con);
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(dt);
+                }
+                Console.WriteLine(table + " table read successfully");
+            }
+            catch (Exception e) { Console.WriteLine("Exception caught reading master: " + e.Message); }
+            return dt;
+        }
 
         // Read all topics, return data as list of strings 
         public List<string> ReadTopics()

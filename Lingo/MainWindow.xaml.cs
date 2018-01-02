@@ -115,7 +115,7 @@ namespace Lingo
             // TODO - check that a topic is selected
 
             // Get all contents of chosen table
-            DataTable dt = dataHandler.ReadTable(cmboBxTestTopics.SelectedItem.ToString(), dataHandler.masterTestReadQ);           
+            DataTable dt = dataHandler.TestReadTable("MASTER", cmboBxTestTopics.Text);   
             // Convert given size to int
             int size = Convert.ToInt32(txtBxSize.Text);
             // Pass these to test obj to handle test prep/execution
